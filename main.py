@@ -13,15 +13,13 @@
 #
 # if __name__ == "__main__":
 #     main()
-# 45.10.55.152
 
 
-#         area = folium.Map(location=[response.get('lat'), response.get('lon')])
-# folium.Marker([response.get('lat'), response.get('lon')]).add_to(area)
-# area.save(f'{response.get("query")}_{response.get("city")}.html')
+# 45.10.55.152 # website ed.ru 
+
 
 import requests
-from pyfiglet import Figlet
+from pyfiglet import Figlet # nice prewiew for code
 import folium
 
 
@@ -39,18 +37,18 @@ def get_info_ip(ip='127.0.0.0'):
             '[LON]': response.get("lon"),
         }
 
-        area = folium.Map(location=[response.get("lat"),response.get("lon")])
-        folium.Marker([response.get('lat'), response.get('lon')]).add_to(area)
-        area.save(f'{response.get("query")}_{response.get("country")}.html')
+        area = folium.Map(location=[response.get("lat"),response.get("lon")]) #use lat and lan to get map coordinates 
+        folium.Marker([response.get('lat'), response.get('lon')]).add_to(area) #add point on map 
+        area.save(f'{response.get("query")}_{response.get("country")}.html') #save html file
 
         for k, v in data.items():
-            print(f'{k}:{v}')
+            print(f'{k}:{v}') #collecting data in console
     except ConnectionError:
         print("[!] Please check your connection")
 
 
 def main():
-    preview_text = Figlet(font='slant')
+    preview_text = Figlet(font='slant') 
     print(preview_text.renderText('IP INFO'))
     ip = input("Type IP address: ")
     get_info_ip(ip=ip)
